@@ -27,7 +27,7 @@ public class Postazioni {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String codUnivoco;
+	
 	private String descrizione;
 	private int numOccupanti;
 	
@@ -38,15 +38,14 @@ public class Postazioni {
 	private List<Prenotazioni> prenotazione = new ArrayList<>();
 	
 	
-	public Postazioni(String codUnivoco, String descrizione, int numOccupanti, Tipo tipo, Sede sede,
-			List<Prenotazioni> prenotazione) {
+	public Postazioni( String descrizione, int numOccupanti, Tipo tipo 
+			) {
 		super();
-		this.codUnivoco = codUnivoco;
+		
 		this.descrizione = descrizione;
 		this.numOccupanti = numOccupanti;
 		this.tipo = tipo;
-		this.sede = sede;
-		this.prenotazione = prenotazione;
+		
 	}
 	
 	

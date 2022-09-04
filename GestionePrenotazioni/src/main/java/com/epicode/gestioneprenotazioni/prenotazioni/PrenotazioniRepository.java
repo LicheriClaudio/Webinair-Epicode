@@ -12,10 +12,10 @@ import org.springframework.stereotype.Repository;
 public interface PrenotazioniRepository  extends CrudRepository<Prenotazioni, Long>{
 	
 
-@Query("SELECT pre FROM Prenotazioni pre WHERE pre.utente.id =:id AND pre.validita =:validita" )
-List<Prenotazioni> findByUserAndValidita(Long id, LocalDate validita);
+@Query("SELECT count(*) FROM Prenotazioni pre WHERE pre.utente.id =:id AND pre.validita =:validita" )
+int findByUserAndValidita(Long id, LocalDate validita);
 
-@Query("SELECT ele FROM Prenotazioni ele WHERE ele.postazione.id =:id AND ele.validita =:validita" )
-List<Prenotazioni> findByPostazioneAndDate(Long id, LocalDate validita);
+@Query("SELECT count(*) FROM Prenotazioni ele WHERE ele.postazione.id =:id AND ele.validita =:validita" )
+int findByPostazioneAndDate(Long id, LocalDate validita);
 
 }

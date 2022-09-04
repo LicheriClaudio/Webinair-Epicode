@@ -49,13 +49,13 @@ public class PrenotazioniController {
 		prenotazioniService.modifica(prenotazioni);
 	}
 	@GetMapping("/findByUserAndValidita")
-	public List<Prenotazioni> findByUserAndValidita(@RequestParam Long id,@RequestParam LocalDate validita){
+	public int findByUserAndValidita(@RequestParam Long id,@RequestParam LocalDate validita){
 		return  prenotazioniService.findByUserAndValidita(id, validita);
 		
 		
 	}
 	@GetMapping("/findByPostazioneAndDate")
-	public List<Prenotazioni> findByPostazioneAndDate(@RequestParam Long id,@RequestParam LocalDate validita){
+	public int  findByPostazioneAndDate(@RequestParam Long id,@RequestParam LocalDate validita){
 		return  findByPostazioneAndDate( id,  validita);
 	}
 }

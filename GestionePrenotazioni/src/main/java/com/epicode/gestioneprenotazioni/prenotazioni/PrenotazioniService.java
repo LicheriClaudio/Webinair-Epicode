@@ -39,9 +39,9 @@ public class PrenotazioniService {
 	}
 
 	public void crea (Prenotazioni prenotazioni  ) {
-		List<Prenotazioni> prenota= findByUserAndValidita(prenotazioni.getUtente().getId(), prenotazioni.getValidita());
-		List<Prenotazioni> tavolo = findByPostazioneAndDate(prenotazioni.getPostazione().getId(), prenotazioni.getValidita());
-		if (prenota == null || prenota.size() == 0 && tavolo.size() < prenotazioni.getPostazione().getNumOccupanti()) {
+		int prenota= findByUserAndValidita(prenotazioni.getUtente().getId(), prenotazioni.getValidita());
+		int tavolo = findByPostazioneAndDate(prenotazioni.getPostazione().getId(), prenotazioni.getValidita());
+		if ( prenota == 0 || tavolo <prenotazioni.getPostazione().getNumOccupanti()) {
 			repo.save(prenotazioni);
 		}
 		
@@ -51,11 +51,11 @@ public class PrenotazioniService {
 		repo.save(prenotazioni);
 		
 	}
-	public List<Prenotazioni> findByUserAndValidita(Long id, LocalDate validita){
+	public int findByUserAndValidita(Long id, LocalDate validita){
 		return  repo.findByUserAndValidita(id, validita);
 	};
 	
-	public List<Prenotazioni> findByPostazioneAndDate(Long id, LocalDate validita){
+	public int findByPostazioneAndDate(Long id, LocalDate validita){
 		return  repo.findByPostazioneAndDate( id,  validita);
 	}
 
